@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard des Performances</h1>
+
+    <!-- Formulaire de filtre -->
+    <form method="get">
+        <label for="date_from">Date de début :</label>
+        <input type="date" name="date_from" id="date_from" value="{{ request.GET.date_from }}">
+
+        <label for="date_to">Date de fin :</label>
+        <input type="date" name="date_to" id="date_to" value="{{ request.GET.date_to }}">
+
+        <label for="opponent">Adversaire :</label>
+        <input type="text" name="opponent" id="opponent" value="{{ request.GET.opponent }}">
+
+        <label for="min_points">Points min :</label>
+        <input type="number" name="min_points" id="min_points" value="{{ request.GET.min_points }}">
+
+        <label for="max_points">Points max :</label>
+        <input type="number" name="max_points" id="max_points" value="{{ request.GET.max_points }}">
+
+        <button type="submit">Filtrer</button>
+    </form>
+
+    <!-- Tableau des matchs -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Adversaire</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for match in matches %}
+            <tr>
+                <td>{{ match.date }}</td>
+                <td>{{ match.opponent }}</td>
+                <td>{{ match.points }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Aucun match trouvé.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <a href="{% url 'export_csv' %}">Exporter en CSV</a>
+<a href="{% url 'export_pdf' %}">Exporter en PDF</a>
+
+    </table>
+</body>
+</html>

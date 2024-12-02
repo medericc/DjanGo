@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highlights</title>
+</head>
+<body>
+    <h1>Moments Forts</h1>
+    <ul>
+        {% for highlight in highlights %}
+        <li>
+            <h2>{{ highlight.title }}</h2>
+            <p>{{ highlight.description }}</p>
+            {% if highlight.media %}
+            <a href="{{ highlight.media.url }}" download>Télécharger le média</a>
+            {% else %}
+            <p>Aucun média disponible.</p>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

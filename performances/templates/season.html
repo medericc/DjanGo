@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seasons</title>
+</head>
+<body>
+    <h1>Saisons</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Saison</th>
+                <th>Total Points</th>
+                <th>Total Assists</th>
+                <th>Total Rebounds</th>
+                <th>Total Steals</th>
+                <th>Total Blocks</th>
+                <th>Total Turnovers</th>
+                <th>Moyenne Points/Match</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for season_data in data %}
+            <tr>
+                <td>{{ season_data.season.year }}</td>
+                <td>{{ season_data.total_points }}</td>
+                <td>{{ season_data.total_assists }}</td>
+                <td>{{ season_data.total_rebounds }}</td>
+                <td>{{ season_data.total_steals }}</td>
+                <td>{{ season_data.total_blocks }}</td>
+                <td>{{ season_data.total_turnovers }}</td>
+                <td>{{ season_data.avg_points|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
